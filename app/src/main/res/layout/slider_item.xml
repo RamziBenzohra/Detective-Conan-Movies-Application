@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/h2">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/playFB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_circle_filled_black_24dp"
+        android:visibility="visible"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/slideIV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/slideIV"
+        tools:ignore="SpeakableTextPresentCheck" />
+    <ImageView
+        android:id="@+id/slideIV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@null"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playFB"
+        android:layout_marginTop="@dimen/image_marginTop6"
+        android:src="@drawable/gradiant_bg"/>
+
+    <TextView
+        android:id="@+id/slideTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/image_marginTop5"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="@dimen/text_Size3"
+        android:layout_marginLeft="@dimen/image_marginLeft2"
+        android:text="Detective Conan 21: The Crimson Love Letter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

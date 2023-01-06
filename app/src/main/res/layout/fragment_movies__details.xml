@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.MoviesDetailsFragment"
+    android:background="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/coverIV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height4"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@null" />
+
+        <ImageView
+            android:id="@+id/gradiantIV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height4"
+            android:src="@drawable/gradiant_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/play_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_circle_filled_black_24dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/gradiantIV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gradiantIV" />
+
+        <ImageView
+            android:id="@+id/thumbnailIV"
+            android:layout_width="@dimen/layout_width1"
+            android:layout_height="@dimen/layout_height5"
+            android:layout_marginStart="@dimen/marginStart1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:transitionName="shared_element"
+            app:layout_constraintBottom_toBottomOf="@+id/coverIV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coverIV"
+            app:srcCompat="@null" />
+
+        <TextView
+            android:id="@+id/movieTitleTV"
+            android:layout_width="@dimen/layout_width6"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginStart1"
+            android:layout_marginTop="@dimen/marginStart1"
+            android:text="BMW"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/textSize1"
+            app:layout_constraintStart_toEndOf="@+id/thumbnailIV"
+            app:layout_constraintTop_toBottomOf="@+id/coverIV" />
+        <TextView
+            android:id="@+id/movieRatingTV"
+            android:layout_width="@dimen/layout_width6"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginStart1"
+            android:layout_marginTop="@dimen/marginStart1"
+            android:text="8.7 / 10"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/textSize2"
+            app:layout_constraintStart_toEndOf="@+id/thumbnailIV"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitleTV" />
+
+        <TextView
+            android:id="@+id/movieDescriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginStart2"
+            android:layout_marginTop="@dimen/marginTop3"
+            android:lineSpacingExtra="@dimen/lineSpacingExtra"
+            android:text="this is random description"
+            android:textColor="#ffffff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thumbnailIV" />
+
+        <TextView
+            android:id="@+id/castTV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height6"
+            android:layout_marginTop="@dimen/marginStart2"
+            android:background="@color/text_bg_bleu"
+            android:paddingLeft="@dimen/paddingLeft"
+            android:paddingTop="@dimen/paddingTop"
+            android:text="Cast"
+            android:textColor="@color/light_bleu"
+            android:textSize="@dimen/textSize3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieDescriptionTV" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/CastRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/castTV"
+            android:layout_marginBottom="@dimen/layout_marginBottom"
+            android:layout_margin="@dimen/layout_margin"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/immage_width"
+        android:layout_height="@dimen/image_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="@dimen/image_marginLeft"
+        android:scaleType="centerCrop"
+        android:src="@null"
+        android:id="@+id/actorIV"
+        android:layout_marginBottom="@dimen/image_marginBottom"/>
+
+    <TextView
+        android:id="@+id/actorTV"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/text_marginStart"
+        android:layout_marginTop="@dimen/text_marginTop"
+        android:layout_marginEnd="@dimen/text_marginEnd"
+        android:text="chafurin"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/actorIV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actorIV" />
+
+    <TextView
+        android:id="@+id/charTV"
+        android:layout_width="@dimen/text_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/text_marginStart"
+        android:layout_marginTop="@dimen/text_marginTop"
+        android:layout_marginEnd="@dimen/text_marginEnd"
+        android:text="inspector jozeph meguiri"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_Size"
+        app:layout_constraintEnd_toEndOf="@+id/actorIV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actorTV"
+        android:layout_marginBottom="@dimen/text_marginBottom"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

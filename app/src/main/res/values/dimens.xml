@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- for about_layout-->
+    <dimen name="about_layout_title">22dp</dimen>
+    <dimen name="about_layout_text_panding">10dp</dimen>
+    <dimen name="about_layout_text_margintop1">15dp</dimen>
+    <dimen name="about_layout_text_margintop2">5dp</dimen>
+    <dimen name="about_layout_text_margintop3">25dp</dimen>
+    <dimen name="about_layout_text_marginbutton">20dp</dimen>
+    <dimen name="about_layout_btn_width">150dp</dimen>
+    <dimen name="about_layout_btn_height">50dp</dimen>
+    <!-- for main_activity-->
+    <dimen name="titleMarginStart">90dp</dimen>
+    <dimen name="Margin">8dp</dimen>
+    <dimen name="layout_height1">200dp</dimen>
+    <dimen name="layout_height2">25dp</dimen>
+    <dimen name="layout_height3">220dp</dimen>
+    <dimen name="layout_marginLeft1">10dp</dimen>
+    <!-- for activity_movie_player-->
+    <dimen name="width">60dp</dimen>
+    <!-- for activity_movies__details_-->
+    <dimen name="layout_height4">175dp</dimen>//
+    <dimen name="layout_height5">135dp</dimen>
+    <dimen name="layout_height6">30dp</dimen>
+    <dimen name="layout_width6">160dp</dimen>
+    <dimen name="layout_width1">115dp</dimen>
+    <dimen name="MarginTop1">56dp</dimen>
+    <dimen name="MarginTop2">112dp</dimen>
+    <dimen name="marginStart1">16dp</dimen>
+    <dimen name="marginStart2">5dp</dimen>
+    <dimen name="marginTop3">24dp</dimen>
+    <dimen name="textSize1">15sp</dimen>
+    <dimen name="textSize2">13sp</dimen>
+    <dimen name="textSize3">15dp</dimen>
+    <dimen name="lineSpacingExtra">8dp</dimen>
+    <dimen name="paddingTop">3dp</dimen>
+    <dimen name="paddingLeft">25dp</dimen>
+    <dimen name="layout_marginBottom">10dp</dimen>
+    <dimen name="layout_margin">5dp</dimen>
+    <!-- for cast_item-->
+    <dimen name="immage_width">110dp</dimen>
+    <dimen name="image_height">140dp</dimen>
+    <dimen name="image_marginLeft">10dp</dimen>
+    <dimen name="image_marginBottom">10dp</dimen>
+    <dimen name="text_width">110dp</dimen>
+    <dimen name="text_marginStart">38dp</dimen>
+    <dimen name="text_marginTop">3dp</dimen>
+    <dimen name="text_marginEnd">32dp</dimen>
+    <dimen name="text_Size">14dp</dimen>
+    <dimen name="text_marginBottom">7dp</dimen>
+    <!-- for item_movie-->
+    <dimen name="image_width1">135dp</dimen>
+    <dimen name="image_height1">155dp</dimen>
+    <dimen name="image_marginBottom1">10dp</dimen>
+    <dimen name="image_marginEnd1">10dp</dimen>
+    <dimen name="image_marginTop1">5dp</dimen>
+    <dimen name="text_Size1">14dp</dimen>
+    <!-- for no_connection_alertview-->
+    <dimen name="text_Size2">14dp</dimen>
+    <dimen name="image_marginTop2">25dp</dimen>
+    <dimen name="image_marginTop3">15dp</dimen>
+    <dimen name="image_marginBottom2">20dp</dimen>
+    <dimen name="hndw">100dp</dimen>
+    <dimen name="hndw1">150dp</dimen>
+    <dimen name="h">50dp</dimen>
+    <!-- for slider_item-->
+    <dimen name="text_Size3">22dp</dimen>
+    <dimen name="image_marginTop4">70dp</dimen>
+    <dimen name="image_marginTop5">135dp</dimen>
+    <dimen name="image_marginTop6">25dp</dimen>
+    <dimen name="image_marginLeft2">10dp</dimen>
+    <dimen name="h1">60dp</dimen>
+    <dimen name="h2">200dp</dimen>
+    <dimen name="toolbar_textsize">20dp</dimen>
+    <dimen name="subtitle_textsize">17dp</dimen>
+    <dimen name="about_textsize">17dp</dimen>
+    <dimen name="disc_textsize">15dp</dimen>
+    <dimen name="item_movie_textsize">14dp</dimen>
+    <dimen name="cast_recycler_height">300dp</dimen>
+    <!--native_ad-->
+    <dimen name="native_add_icon_margin_end">20dp</dimen>
+    <dimen name="native_add_tv_padding">10dp</dimen>
+    <dimen name="profile_iv_w_h">40dp</dimen>
+    <dimen name="line_width">1dp</dimen>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="@dimen/image_width1"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/image_marginBottom1">
+
+    <ImageView
+        android:id="@+id/itemIV"
+        android:layout_width="@dimen/image_width1"
+        android:layout_height="@dimen/image_height1"
+        android:layout_marginEnd="@dimen/image_marginEnd1"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@null" />
+    <TextView
+        android:id="@+id/itemTV"
+        android:layout_width="@dimen/image_width1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="The Time Bombed Skyscraper"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="@dimen/image_marginTop1"
+        android:textSize="14dp"/>
+</LinearLayout>

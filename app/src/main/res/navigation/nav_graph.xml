@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.rb.detectiveconan.movies.ui.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_moviesDetailsFragment"
+            app:destination="@id/moviesDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_moviePlayerFragment"
+            app:destination="@id/moviePlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesDetailsFragment"
+        android:name="com.rb.detectiveconan.movies.ui.fragments.MoviesDetailsFragment"
+        android:label="fragment_movies__details"
+        tools:layout="@layout/fragment_movies__details" >
+        <action
+            android:id="@+id/action_moviesDetailsFragment_to_moviePlayerFragment"
+            app:destination="@id/moviePlayerFragment" />
+        <argument
+            android:name="movieEntity"
+            app:argType="com.rb.detectiveconan.movies.data.entities.MovieEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviePlayerFragment"
+        android:name="com.rb.detectiveconan.movies.ui.fragments.MoviePlayerFragment"
+        android:label="fragment_movies__player"
+        tools:layout="@layout/fragment_movies__player" >
+        <argument
+            android:name="slideEntity"
+            app:argType="com.rb.detectiveconan.movies.data.entities.SlidesEntity" />
+    </fragment>
+</navigation>
