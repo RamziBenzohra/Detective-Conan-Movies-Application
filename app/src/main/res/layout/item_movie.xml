@@ -5,7 +5,11 @@
     android:layout_width="@dimen/image_width1"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginBottom="@dimen/image_marginBottom1">
+
+    android:layout_marginBottom="@dimen/image_marginBottom1"
+    android:layout_marginEnd="@dimen/image_marginBottom1"
+
+    >
 
     <ImageView
         android:id="@+id/itemIV"
@@ -14,6 +18,7 @@
         android:layout_marginEnd="@dimen/image_marginEnd1"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        android:transitionName="to_details_fragment"
         android:src="@null" />
     <TextView
         android:id="@+id/itemTV"

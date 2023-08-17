@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.rb.detectiveconan.movies.ui.fragments.MainFragment"
-        android:label="fragment_main"
+        android:label="Discover"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_moviesDetailsFragment"
@@ -15,11 +15,12 @@
         <action
             android:id="@+id/action_mainFragment_to_moviePlayerFragment"
             app:destination="@id/moviePlayerFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/moviesDetailsFragment"
         android:name="com.rb.detectiveconan.movies.ui.fragments.MoviesDetailsFragment"
-        android:label="fragment_movies__details"
+        android:label="Details"
         tools:layout="@layout/fragment_movies__details" >
         <action
             android:id="@+id/action_moviesDetailsFragment_to_moviePlayerFragment"

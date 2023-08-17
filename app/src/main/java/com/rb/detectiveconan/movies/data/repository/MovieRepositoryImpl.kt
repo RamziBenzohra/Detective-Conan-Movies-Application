@@ -1,37 +1,26 @@
 package com.rb.detectiveconan.movies.data.repository
 
+import android.util.Log
 import com.rb.detectiveconan.movies.data.entities.CastEntity
 import com.rb.detectiveconan.movies.data.entities.MovieEntity
 import com.rb.detectiveconan.movies.data.entities.SlidesEntity
 import com.rb.detectiveconan.movies.data.local.MovieDAO
 import com.rb.detectiveconan.movies.data.remote.api.Api
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import retrofit2.HttpException
 import javax.inject.Inject
 
 class MovieRepositoryImpl
 @Inject constructor(private val movieDAO: MovieDAO,
                     private val api: Api,
-
                     ) : MovieRepository {
-    override suspend fun getMoviesFromDatabase(): Flow<List<MovieEntity>> {
-        return try {
-               movieDAO.getAllMovies()
-        }catch (e:Exception){
-            e.printStackTrace()
-           flow {  }
-        }
-    }
 
-    override suspend fun getSlidesFromDatabase(): Flow<List<SlidesEntity>> {
-        return try {
-            movieDAO.getAllSlides()
-        }catch (e:Exception){
-            e.printStackTrace()
-            flow {  }
-        }
-    }
+    override fun getMoviesFromDatabase(searchTitle:String) = movieDAO.getAllMovies(searchTitle)
+
+    override  fun getSlidesFromDatabase() = movieDAO.getAllSlides()
 
     override suspend fun getCastFromDatabase(): Flow<List<CastEntity>> {
         return try {
@@ -114,6 +103,15 @@ class MovieRepositoryImpl
         }catch (e:Exception){
             e.printStackTrace()
             false
+        }
+    }
+
+    override suspend fun deleteAllSlides(): Int {
+        return try {
+            movieDAO.deleteAllSlides()
+        }catch (e:Exception){
+            e.printStackTrace()
+            0
         }
     }
 }

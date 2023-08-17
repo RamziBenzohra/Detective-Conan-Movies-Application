@@ -1,7 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rb.detectiveconan.movies.ui.MainActivity">
+    tools:context="com.rb.detectiveconan.movies.ui.MainActivity"
+    >
     <item
         android:id="@+id/search"
         android:title="Search"
@@ -12,13 +13,16 @@
     <item
         android:id="@+id/about"
         android:title="about"
+
         />
     <item
         android:id="@+id/rate_us"
         android:title="Rate us"
+
         />
     <item
         android:id="@+id/exit"
         android:title="Exit"
+
         />
 </menu>

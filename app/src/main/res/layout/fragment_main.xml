@@ -5,8 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MainFragment"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_tb"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Discover"
+        app:titleMarginStart="@dimen/titleMarginStart"
+        android:theme="@style/tb_style"
+        app:popupTheme="@style/tb_popup_style"
+        />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,43 +30,41 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            >
+            android:layout_height="match_parent">
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/slider_page"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_250sdp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/indicator"
+                android:id="@+id/tab_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height2"
-
+                android:layout_height="@dimen/_20sdp"
+                android:background="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/slider_page"
                 app:tabBackground="@drawable/selector_indicator"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_height6"
-                android:layout_marginTop="@dimen/marginStart2"
-                android:paddingStart="@dimen/paddingLeft"
-                android:paddingEnd="@dimen/paddingLeft"
-                android:paddingTop="@dimen/paddingTop"
-                android:text="Detective Conan Movies :"
-                android:textAllCaps="true"
                 android:background="@color/text_bg_bleu"
+                android:paddingStart="@dimen/paddingLeft"
+                android:paddingTop="@dimen/paddingTop"
+                android:paddingEnd="@dimen/paddingLeft"
+                android:text="Movies"
+                android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/indicator" />
+                app:layout_constraintTop_toBottomOf="@+id/tab_indicator" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movies_recycler"
@@ -67,7 +77,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

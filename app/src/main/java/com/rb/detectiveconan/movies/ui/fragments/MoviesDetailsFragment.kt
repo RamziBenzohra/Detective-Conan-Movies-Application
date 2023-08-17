@@ -1,6 +1,8 @@
 package com.rb.detectiveconan.movies.ui.fragments
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import com.bumptech.glide.RequestManager
 import com.rb.detectiveconan.movies.R
 import com.rb.detectiveconan.movies.data.entities.SlidesEntity
@@ -35,10 +38,17 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies__details) {
     @Inject
     lateinit var  glide: RequestManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentMoviesDetailsBinding.inflate(layoutInflater)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentMoviesDetailsBinding.bind(view)
         moviesViewModel = ViewModelProvider(requireActivity())[MoviesViewModel::class.java]
+
+        val toDetailsAnimation = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.slide_left)
+        sharedElementEnterTransition = toDetailsAnimation
+        sharedElementReturnTransition = toDetailsAnimation
+
         binding.movieTitleTV.text = args.movieEntity.title
         binding.movieDescriptionTV.text = args.movieEntity.description
         binding.movieRatingTV.text = args.movieEntity.rating
@@ -56,9 +66,12 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies__details) {
             )
             findNavController().navigate(action)
         }
+        binding.backBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         lifecycleScope.launch {
-            moviesViewModel.allCasts.value.data.collect{
-                movieCastsRecyclerViewAdapter.casts =it
+            moviesViewModel.allCasts.collect{
+                //movieCastsRecyclerViewAdapter.casts =it
             }
         }
     }
