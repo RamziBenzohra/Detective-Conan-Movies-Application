@@ -1,7 +1,14 @@
 package com.rb.detectiveconan.movies.di
 
 
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
+import com.google.firebase.FirebaseApp
+import com.google.firebase.ktx.Firebase
+import com.rb.detectiveconan.movies.Application
 import com.rb.detectiveconan.movies.data.local.MovieDAO
+import com.rb.detectiveconan.movies.data.player.VideoMetaData
+import com.rb.detectiveconan.movies.data.player.VideoMetaDataImpl
 import com.rb.detectiveconan.movies.data.remote.api.Api
 
 import com.rb.detectiveconan.movies.data.repository.MovieRepository
@@ -69,6 +76,17 @@ object ViewModelModules {
 
 
 
+    @Provides
+    @ViewModelScoped
+    fun provideVideoMetaData() : VideoMetaData {
+        return VideoMetaDataImpl()
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideVideoPlayer(app : android.app.Application) : Player {
+        return ExoPlayer.Builder(app).build()
+    }
 
 
 

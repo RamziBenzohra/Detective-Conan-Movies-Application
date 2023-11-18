@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rb.detectiveconan.movies.R
 import com.rb.detectiveconan.movies.databinding.FragmentMainBinding
-import com.rb.detectiveconan.movies.presentation.MoviesViewModel
+import com.rb.detectiveconan.movies.presentation.ViewModel
 import com.rb.detectiveconan.movies.ui.adapters.MainMoviesRecyclerViewAdapter
 import com.rb.detectiveconan.movies.ui.adapters.MovieSlidesViewPagerAdapter
 import com.rb.detectiveconan.movies.utils.onQueryTextChanged
@@ -38,7 +38,7 @@ import javax.inject.Inject
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var binding: FragmentMainBinding
-    private val moviesViewModel: MoviesViewModel by viewModels()
+    private val viewModel: ViewModel by viewModels()
 
     @Inject
     lateinit var mainMoviesRecyclerViewAdapter: MainMoviesRecyclerViewAdapter
@@ -50,6 +50,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
+
+
         binding.apply {
             myTb.inflateMenu(R.menu.menu_main)
             addCustomSearchView(myTb.menu)
@@ -76,7 +78,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     }
                 }
             }
-
             moviesRecycler.apply {
                 adapter = mainMoviesRecyclerViewAdapter
                 layoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
@@ -91,19 +92,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             sliderPage.apply {
                 adapter = movieSlidesViewPagerAdapter
                 movieSlidesViewPagerAdapter.setOnItemClickListener { slide ->
-                    val action =
-                        MainFragmentDirections.actionMainFragmentToMoviePlayerFragment(slide)
+                    val action = MainFragmentDirections.actionMainFragmentToMoviePlayerFragment(slide)
                     findNavController().navigate(action)
                 }
             }
-            TabLayoutMediator(binding.tabIndicator,binding.sliderPage){tab, position ->
+            TabLayoutMediator(binding.tabIndicator,binding.sliderPage){ _, _ ->
             }.attach()
         }
-        moviesViewModel.allMovies.observe(viewLifecycleOwner) { movies ->
+
+        viewModel.allMovies.observe(viewLifecycleOwner) { movies ->
             mainMoviesRecyclerViewAdapter.submitList(movies)
 
         }
-        moviesViewModel.allSlides.observe(viewLifecycleOwner) { slides ->
+        viewModel.allSlides.observe(viewLifecycleOwner) { slides ->
             movieSlidesViewPagerAdapter.submitList(slides)
             Log.d(
                 "MAIN_FRAGMENT",
@@ -126,7 +127,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
+
     }
+
     private fun addCustomSearchView(menu: Menu) {
         val search_Item = menu.findItem(R.id.search)
         if (search_Item != null) {
@@ -134,8 +137,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             var edit_text = search_view.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
 
             edit_text.hint = "Enter Number Or Name"
-            edit_text.background =
-                AppCompatResources.getDrawable(requireContext(), R.drawable.search_input_dark_style)
+            edit_text.background = AppCompatResources.getDrawable(requireContext(), R.drawable.search_input_dark_style)
             edit_text.setTextColor(Color.WHITE)
             edit_text.setHintTextColor(Color.DKGRAY)
             edit_text.height = 25
@@ -144,13 +146,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 AppCompatResources.getDrawable(
                     requireContext(),
                     R.drawable.ic_search_black_24dp
-                ), null, null, null
-            )
+                ), null, null, null)
             edit_text.compoundDrawablePadding = 8
             edit_text.setPadding(10, 3, 3, 3)
             search_view.onQueryTextChanged {
-                moviesViewModel.searchText.value = it
+                viewModel.searchText.value = it
                 binding.sliderPage.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
+                binding.tabIndicator.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
             }
         }
     }
@@ -191,4 +193,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
         alertCreate.show()
     }
+
 }

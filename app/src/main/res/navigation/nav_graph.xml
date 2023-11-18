@@ -34,8 +34,11 @@
         android:name="com.rb.detectiveconan.movies.ui.fragments.MoviePlayerFragment"
         android:label="fragment_movies__player"
         tools:layout="@layout/fragment_movies__player" >
+
+
         <argument
             android:name="slideEntity"
-            app:argType="com.rb.detectiveconan.movies.data.entities.SlidesEntity" />
+            app:argType="com.rb.detectiveconan.movies.data.entities.SlidesEntity"
+             />
     </fragment>
 </navigation>

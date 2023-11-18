@@ -2,7 +2,6 @@ package com.rb.detectiveconan.movies.ui.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +16,7 @@ import com.rb.detectiveconan.movies.R
 import com.rb.detectiveconan.movies.data.entities.SlidesEntity
 
 import com.rb.detectiveconan.movies.databinding.FragmentMoviesDetailsBinding
-import com.rb.detectiveconan.movies.presentation.MoviesViewModel
+import com.rb.detectiveconan.movies.presentation.ViewModel
 
 import com.rb.detectiveconan.movies.ui.adapters.MovieCastsRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +29,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies__details) {
     private val args by navArgs<MoviesDetailsFragmentArgs>()
 
     private lateinit var binding: FragmentMoviesDetailsBinding
-    private lateinit var moviesViewModel: MoviesViewModel
+    private lateinit var viewModel: ViewModel
 
     @Inject
     lateinit var movieCastsRecyclerViewAdapter: MovieCastsRecyclerViewAdapter
@@ -43,7 +42,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies__details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesDetailsBinding.bind(view)
-        moviesViewModel = ViewModelProvider(requireActivity())[MoviesViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
 
         val toDetailsAnimation = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.slide_left)
         sharedElementEnterTransition = toDetailsAnimation
@@ -70,7 +69,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies__details) {
             requireActivity().onBackPressed()
         }
         lifecycleScope.launch {
-            moviesViewModel.allCasts.collect{
+            viewModel.allCasts.collect{
                 //movieCastsRecyclerViewAdapter.casts =it
             }
         }
