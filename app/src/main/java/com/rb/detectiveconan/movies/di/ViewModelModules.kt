@@ -3,9 +3,6 @@ package com.rb.detectiveconan.movies.di
 
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
-import com.rb.detectiveconan.movies.Application
 import com.rb.detectiveconan.movies.data.local.MovieDAO
 import com.rb.detectiveconan.movies.data.player.VideoMetaData
 import com.rb.detectiveconan.movies.data.player.VideoMetaDataImpl
@@ -73,6 +70,7 @@ object ViewModelModules {
         ): GetAllCastsUseCases {
         return GetAllCastsUseCases(movieRepository = moviesRepository)
     }
+
 
 
 

@@ -8,17 +8,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import com.rb.detectiveconan.movies.data.entities.CastEntity
 import com.rb.detectiveconan.movies.data.player.VideoItem
 import com.rb.detectiveconan.movies.data.player.VideoMetaData
-import com.rb.detectiveconan.movies.domain.GetAllCastsUseCases
 import com.rb.detectiveconan.movies.domain.GetAllMoviesUseCases
 import com.rb.detectiveconan.movies.domain.GetAllSlidesUseCases
 import com.rb.detectiveconan.movies.domain.MoviesResult
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,12 +29,15 @@ class ViewModel
 constructor(private val moviesUseCases: GetAllMoviesUseCases,
 private val slidesUseCases: GetAllSlidesUseCases,
             private val savedStateHandle: SavedStateHandle,
-            private val videoMetaData: VideoMetaData,
+             val videoMetaData: VideoMetaData,
             val player : Player)
-    :ViewModel() {
+    :ViewModel(),Player.Listener {
 
-    val videoUris = savedStateHandle.getStateFlow("videoUris", emptyList<Uri>())
-    val videoItems = videoUris.map {uris->
+
+
+    val videoUrisFlow = savedStateHandle.getStateFlow("videoUris", emptyList<Uri>())
+
+    val videoItem = videoUrisFlow.map { uris->
         uris.map {uri->
             VideoItem(
                 videoItem = uri,
@@ -45,23 +47,59 @@ private val slidesUseCases: GetAllSlidesUseCases,
 
     }.stateIn(viewModelScope, started = SharingStarted.WhileSubscribed(), initialValue = emptyList())
 
-    fun addVideoUri(path :String) = videoMetaData.getVideoUri(path).apply {
+    fun addVideoUri(path :String) = videoMetaData.apply {
 
-        savedStateHandle["videoUris"] = videoUris.value + this
-        player.addMediaItem(MediaItem.fromUri(this))
+        getVideoUri(path).apply {
+            /////check if the URI does not exist
+            ////// if the URI exist then we play directly the URI, we do not have to add new URI
+            if (!videoUrisFlow.value.contains(this)){
+                //add the URI is not exist
+                Log.d("MOVIES_VIEW_MODEL","Adding the video to Media Item ........")
+
+                savedStateHandle["videoUris"] = videoUrisFlow.value + this
+                Log.d("MOVIES_VIEW_MODEL","There are ${videoUrisFlow.value.size} URI")
+            }
+
+            player.addMediaItem(MediaItem.fromUri(this))
+            playVideo(this)
     }
-    fun playVideo(uri: Uri){
-        player.setMediaItem(
-            videoItems.value.find { it.videoItem == uri }?.mediaItem ?:return
-        )
+    }
+   private fun playVideo(uri: Uri){
+        Log.d("MOVIES_VIEW_MODEL","Setting media Item ........")
+       player.seekTo( videoUrisFlow.value.indexOf(uri), 0)
+        player.prepare()
         player.playWhenReady = true
         player.play()
+        Log.d("MOVIES_VIEW_MODEL","video is now playing ........")
     }
+
+
+    override fun onPlaybackStateChanged(playbackState: Int) {
+        when(playbackState){
+            Player.STATE_BUFFERING ->{
+                //show the progressBar
+
+            }
+            Player.STATE_READY ->{
+                //hide the ProgressBar
+            }
+            Player.STATE_ENDED ->{
+                //hide the ProgressBar
+            }
+        }
+
+        super.onPlaybackStateChanged(playbackState)
+    }
+
+
+
 
     override fun onCleared() {
         super.onCleared()
         player.release()
     }
+
+
 
     val searchText = MutableStateFlow("")
 
@@ -80,8 +118,10 @@ private val slidesUseCases: GetAllSlidesUseCases,
     init {
     getAllMovies()
     getAllSlides()
+        player.addListener(this)
         player.prepare()
-}
+
+    }
 
 
 
@@ -95,16 +135,7 @@ private val slidesUseCases: GetAllSlidesUseCases,
         Log.d("MOVIES_VIEW_MODEL","GET_ALL_SLIDES")
         slidesUseCases.catchSlidesOnDatabase()
     }
-    private fun getAllCasts(){
-        Log.d("MOVIES_VIEW_MODEL","GET_ALL_CASTS")
-        viewModelScope.launch {
-            try {
-//
-            }catch (e:Exception){
 
-            }
-        }
-    }
 
 
 }

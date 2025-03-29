@@ -1,0 +1,6 @@
+///URI is Added again when click the movies again --------> I have to add mechanism to check the URI if exist again
+///Movie player is not playing the new added Uri
+//phone screen turns off while the video is playing, needs to keep the video alive
+//video keep playing in the background when the app is changed
+adding animation to the playlist, so user knows the video currently playing?
+support full screen

@@ -1,6 +1,8 @@
 package com.rb.detectiveconan.movies.ui.fragments
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,21 +37,20 @@ class MoviePlayerFragment : Fragment(R.layout.fragment_movies__player) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding = FragmentMoviesPlayerBinding.bind(view)
+
         binding.apply {
             mMoviesPlayer = moviesPlayer
+            mMoviesPlayer.player = viewModel.player
+            playVideo(args.slideEntity.link)
             moviesPlayerRecyclerView.apply {
                 adapter = videoPlayerRecyclerViewAdapter
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 videoPlayerRecyclerViewAdapter.setOnItemClickListener { movie, imageView ->
-//                    viewModel.player.stop()
-//                    playVideo(movie.streaminglink)
+                    Log.d("MOVIES_VIEW_MODEL","playing video excuted ${movie.title} ........")
+                    playVideo(movie.streaminglink)
 
                 }
             }
-
-
-            playVideo(args.slideEntity.link)
-
         }
 
         viewModel.allMovies.observe(viewLifecycleOwner) { movies ->
@@ -58,16 +59,23 @@ class MoviePlayerFragment : Fragment(R.layout.fragment_movies__player) {
         }
 
     }
-    fun playVideo(path:String?){
+    private fun playVideo(path:String?){
         viewModel.apply {
-            mMoviesPlayer.player = player
             path?.let {
-                addVideoUri(it).apply {
-                    playVideo(this)
-                }
+                addVideoUri(it)
             }
         }
     }
 
+    override fun onStart() {
+        viewModel.player.playWhenReady = true
+
+        super.onStart()
+    }
+
+    override fun onStop() {
+        viewModel.player.playWhenReady = false
+        super.onStop()
+    }
 
 }

@@ -102,6 +102,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         viewModel.allMovies.observe(viewLifecycleOwner) { movies ->
             mainMoviesRecyclerViewAdapter.submitList(movies)
+            /// this is an attempt to add all video uris to the mediaItem
+//            movies.forEach { movie->
+//                movie.streaminglink?.let {link->
+//                    viewModel.addVideoUri(link)
+//                }
+//                Log.d("MOVIES_VIEW_MODEL","Video added to MediaItem ........")
+//            }
 
         }
         viewModel.allSlides.observe(viewLifecycleOwner) { slides ->

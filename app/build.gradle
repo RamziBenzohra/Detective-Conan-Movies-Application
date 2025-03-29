@@ -101,4 +101,7 @@ dependencies {
     implementation("androidx.media3:media3-exoplayer:1.1.1")
     // For building media playback UIs
     implementation("androidx.media3:media3-ui:1.1.1")
+    ///lottie animation
+    implementation 'com.airbnb.android:lottie:6.2.0'
+
 }
